@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SpotLight</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                {% comment %} <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li> {% endcomment %}
+
+                <li class="nav-item">
+                <a class="nav-link" href="/profile" >
+                {{user.username}}
+                </a>
+                </li>
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                <button class="btn btn-warning" type="submit">
+                Logout
+                </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <h2>First, let’s get you set up.
+
+</h2>
+      <p class="lead">Pick a project category to connect with a specific community. You can always update this later.</p>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item disabled" href="#">Disabled action</a>
+          <h6 class="dropdown-header">Section header</h6>
+          <a class="dropdown-item" href="#">Action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">After divider action</a>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">basic information</h4>
+        <form class="needs-validation" novalidate="">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="title" class="form-label">Project Title</label>
+              <input type="text" class="form-control" id="title" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid project name is required.
+              </div>
+            </div>
+
+
+
+            <div class="col-12">
+              <label for="projectdes" class="form-label">Project Description</label>
+              <div class="input-group has-validation">
+
+                <input type="text" class="form-control" id="description" placeholder="description" required="">
+              <div class="invalid-feedback">
+                  description is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+            <input type="submit" value="Submit">
+
+
+
+  </main>
+{% endblock %}
