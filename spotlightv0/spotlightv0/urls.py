@@ -21,7 +21,7 @@ from creator import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls')),
-    #path('investor/', include("investor.urls")),
+    path('investor/', include("investor.urls")),
     path('creator/', include("creator.urls")),
     path('profile/', login_required(views.ProfileView.as_view()),name='profile'),
 
