@@ -13,9 +13,12 @@ class creator_Basic(models.Model):
     ('photography','PHOTOGRAPHY'),)
     category = models.CharField(max_length=15, choices= Category_Choices, default='technology')
     title=models.CharField(max_length=50)
+    def __unicode__(self):
+        return self.title
     description=models.TextField()
     email = models.EmailField()
 
+  
 
 class creator_fund(models.Model):
     amount=models.IntegerField()
