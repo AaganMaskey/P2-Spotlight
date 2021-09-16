@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -13,7 +15,12 @@ def create(request):
 # relative import of forms
 from .models import creator_Basic, creator_fund
 from .forms import creatorBasic
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
+
+@require_POST
+@csrf_exempt
 
 def create_view(request):
 	# dictionary for initial data with
@@ -21,7 +28,7 @@ def create_view(request):
 	context ={}
 
 	# add the dictionary during initialization
-	form = GeeksForm(request.POST or None)
+	form = creatorBasic(request.POST or None)
 	if form.is_valid():
 		form.save()
 		
@@ -31,3 +38,12 @@ def create_view(request):
 class ProfileView(View):
     def get (self,request):
        return render(request, 'profile.html')
+
+
+def addCreator(request):
+    if request.method == "POST":
+     creator_Basic.objects.all()
+    creator_Basic.save()
+    return HttpResponseRedirect(reverse("view", args=(id,)))
+
+
