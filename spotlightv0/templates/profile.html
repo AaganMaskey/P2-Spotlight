@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>This is your profile</h1>
+<form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Logout" class="btn bth-info">
+</form>
+{% endblock %}

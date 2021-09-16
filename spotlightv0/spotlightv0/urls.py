@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('authentication.urls')),
     #path('investor/', include("investor.urls")),
     path('creator/', include("creator.urls")),
+    path('profile/', login_required(creator.views.ProfileView.as_view()),name='profile'),
 
 ]
