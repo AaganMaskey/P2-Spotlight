@@ -1,8 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>This is your profile</h1>
-<form action="{% url 'logout' %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Logout" class="btn bth-info">
-</form>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SpotLight</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                {% comment %} <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li> {% endcomment %}
+
+                <li class="nav-item">
+                <a class="nav-link" href="/profile" >
+                {{user.username}}
+                </a>
+                </li>
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                <button class="btn btn-warning" type="submit">
+                Logout
+                </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <h1>This is your profile</h1>
+You are logged in as 
+"{{user.username}}"
+
+
+
 {% endblock %}
