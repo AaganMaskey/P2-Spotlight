@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
-import os, logging
+import os
+import logging
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,8 +32,8 @@ ALLOWED_HOSTS = []
 if DEBUG:
     # will output to your console
     logging.basicConfig(
-        level = logging.DEBUG,
-        format = '%(asctime)s %(levelname)s %(message)s',
+        level=logging.DEBUG,
+        format='%(asctime)s %(levelname)s %(message)s',
     )
 
 
@@ -87,7 +88,7 @@ WSGI_APPLICATION = 'spotlightv0.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
     }
 }
 
@@ -130,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS=[
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
@@ -141,21 +142,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email configuration, credentials at .env
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-MAILER_EMAIL_BACKEND = EMAIL_BACKEND  
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND
 #EMAIL_HOST = os.environ.get('EMAIL_HOST')
 #EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 #EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL')
 #EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='spotlight.excelerators@gmail.com'
-EMAIL_HOST_PASSWORD='^64Wk&s&GTStB^99r4SW^hc1DD6'
-EMAIL_USE_SSL=True
-EMAIL_PORT=465
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'spotlight.excelerators@gmail.com'
+EMAIL_HOST_PASSWORD = '^64Wk&s&GTStB^99r4SW^hc1DD6'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# Constants for user authentication   
-LOGIN_URL='login'
-LOGIN_REDIRECT_URL='home'
-LOGOUT_URL='logout'
-LOGOUT_REDIRECT_URL='login'
+# Constants for user authentication
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
