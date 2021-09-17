@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -40,10 +40,30 @@ class ProfileView(View):
        return render(request, 'profile.html')
 
 
-def addCreator(request):
-    if request.method == "POST":
-     creator_Basic.objects.all()
-    creator_Basic.save()
-    return HttpResponseRedirect(reverse("view", args=(id,)))
+#def addCreator(request):
+ #   if request.method == "POST":
+  #   creator_Basic.objects.all()
+   # creator_Basic.save()
+    #return HttpResponseRedirect(reverse("view", args=(id,)))
 
-
+def Add_Creator(request):
+    error = ""
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == 'POST':
+        name = request.POST['pname']  # The name mentioned in the text box should be mentioned here
+        desc = request.POST['pdesc']
+        cat = request.POST['category']
+        try:
+            creator_Basic.objects.create(
+                title=name,
+                description = desc,
+                category = cat,
+            
+            )
+            error = "no"
+        except Exception as e:
+            print(e)
+            error = "yes"
+    p = {'error': error}
+    return render(request, 'create.html', p)

@@ -35,69 +35,26 @@
     </nav>
 
     <main>
-    <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/static/SpotLight Logos/logo_mini3.png" alt="" width="82" height="77">
-      <h2>First, let’s get you set up.
-
-     </h2>
-      <p class="lead">Pick a project category to connect with a specific community. You can always update this later.</p>
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item disabled" href="#">Disabled action</a>
-          <h6 class="dropdown-header">Section header</h6>
-          <a class="dropdown-item" href="#">Action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">After divider action</a>
-        </div>
-      </div>
+      <div class="container" style="margin-top:50px">
+        <h2 class="text-center">Add Project</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label> Project Name </label>
+            <input type="text" class="form-control" name="pname" required>
+            <label> Project Description </label>
+            <input type="text" class="form-control" name="pdesc" required>
+          
+            <label> Project Category</label>
+            <select name="category" class="form-control" name="category" required>
+            <option value="1">Option 1</option>
+            <option value="2">Optioon 2</option>
+            <option value="3">Option 3</option>
+            </select>
+        </select>
+        <br>
+            <input type="submit" value="Submit" class="form-control btn btn-primary">
+        </form>
     </div>
+    </main>
 
-
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">basic information</h4>
-        <form class="needs-validation" novalidate="">
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="title" class="form-label">Project Title</label>
-              <input type="text" class="form-control" id="title" placeholder="" value="" required="">
-              <div class="invalid-feedback">
-                Valid project name is required.
-              </div>
-            </div>
-
-
-
-            <div class="col-12">
-              <label for="projectdes" class="form-label">Project Description</label>
-              <div class="input-group has-validation">
-
-                <input type="text" class="form-control" id="description" placeholder="description" required="">
-              <div class="invalid-feedback">
-                  description is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-            <input type="submit" value="Submit">
-
-
-
-  </main>
 {% endblock %}
