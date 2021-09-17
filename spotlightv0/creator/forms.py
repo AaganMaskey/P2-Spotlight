@@ -16,4 +16,6 @@ class creatorBasic(forms.ModelForm):
 		fields = [
 			"title",
 			"description",
+			 'image'
+
 		]
