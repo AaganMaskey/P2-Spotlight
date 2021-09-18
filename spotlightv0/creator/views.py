@@ -66,4 +66,11 @@ def Add_Creator(request):
             print(e)
             error = "yes"
     p = {'error': error}
-    return render(request, 'create.html', p)
+    return render(request, 'create.html', p)    
+
+def View_Projects(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    create = creator_Basic.objects.all()
+    c = {'create': create}
+    return render(request, 'view_created_projects.html', c)
