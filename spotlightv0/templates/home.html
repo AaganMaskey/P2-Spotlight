@@ -23,10 +23,19 @@ ab
                 </a>
                 </li>
                 <li class="nav-item">
-                    <form action="{% url 'login' %}" method="POST">
+                  {% if not user.is_authenticated %}
+                  <form action="{% url 'login' %}" method="POST">
+                    <button class="btn btn-warning" type="submit">
+                      Login
+                    {% endif %}
+                  {% if user.is_authenticated %}
+                  <form action="{% url 'logout' %}" method="POST">
+                    <button class="btn btn-warning" type="submit">
+                      Logout
+
+                      {% endif %}
                         {% csrf_token %}
-                <button class="btn btn-warning" type="submit">
-                Login
+               
                 </li>
             </ul>
         </div>
