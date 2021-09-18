@@ -71,6 +71,11 @@ def Add_Creator(request):
 def View_Projects(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    create = creator_Basic.objects.all()
-    c = {'create': create}
-    return render(request, 'view_created_projects.html', c)
+
+    data = creator_Basic.objects.all()
+    prj = { "projects": data  }
+    return render(request, "home.html", prj)
+
+    # create = creator_Basic.objects.all()
+    # projects = {'create': create}
+    # return render(request, 'home.html', projects)

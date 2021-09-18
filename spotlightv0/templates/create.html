@@ -16,7 +16,6 @@
                 {% comment %} <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
                 </li> {% endcomment %}
-
                 <li class="nav-item">
                 <a class="nav-link" href="/profile" >
                 {{user.username}}
@@ -25,7 +24,7 @@
                 <li class="nav-item">
                     <form action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}
-                <button class="btn btn-warning" type="submit">
+                <button class="btn border-0 bg-transparent" type="submit">
                 Logout
                 </button>
                     </form>
@@ -36,7 +35,7 @@
     </nav>
 
     <section class="container">
-        <div class="row" style="margin-top:50px">
+        <div class="row py-4 mt-4" >
             <div class="card shadow p-3 col-6 mx-auto">
                 <h2 class="text-center mb-4">Add Project</h2>
                 <form method="POST" enctype="multipart/form-data">
@@ -50,12 +49,13 @@
 
                     <div class="form-group mb-3">
                         <label> Project Description </label>
-                        <input type="text" class="form-control" name="pdesc" required>
+                        <textarea type="text" class="form-control" name="pdesc" rows="5" required></textarea>
                     </div>
                     
                     <div class="form-group mb-3">
                         <label> upload image </label>
-                        <input type="file" id="img" class="form-control" name="image" accept="image/*">  
+                        <input type="file" id="img" class="form-control" name="image" accept="image/*"> 
+                        <small class="text-danger">Note: Image should be less than 1 MB</small> 
                     </div>
 
                     {% comment %} <br> {% endcomment %}

@@ -47,12 +47,14 @@
           <div class="row g-3">
 
             <div class="col-12">
-              <label for="username" class="form-label">Project name</label>
+              <label for="username" class="form-label">Select Project</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="projectname" placeholder="projectname" required="">
-              <div class="invalid-feedback">
-                   Project name is required.
-                </div>
+                <select class="form-control" id="selectproject" required>
+                <option value="">Choose projects</option>
+                {% for pr in projects %}
+                  <option value="{{pr.id}}">{{pr.title}}</option>
+                {% endfor%}
+                </select>
               </div>
             </div>
 
