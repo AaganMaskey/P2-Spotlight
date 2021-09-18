@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<h1> Register here </h1>
+<!-- <h1> Register here </h1>
                             <div class="col-md-5">
                                 <hr> 
                             </div>
@@ -59,5 +59,55 @@
         <form action=""></form>
     </div>
     <div class="col-md-3"></div>
+</div> -->
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-5 mx-auto">   
+            <div class="card p-3 shadow">
+                <h2 class="text-center mb-4">Register Here</h2>     
+                {% include 'partials/_flash_messages.html'%}
+                
+                <form action="{% url 'register' %}" method="POST"> 
+                        {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input class="form-control form-control-sm" type="email" name="email" value="{{data.email}}" placeholder="Email">
+                                </input>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input class="form-control form-control-sm" type="text" name="name" value="{{data.name}}" placeholder="Full Name">
+                                </input>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input class="form-control form-control-sm" type="text" name="username" value="{{data.username}}" placeholder="Username">
+                                </input>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input class="form-control form-control-sm" type="password" name="password" value="" placeholder="Password">
+                                </input>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input class="form-control form-control-sm" type="password" name="password2" value="" placeholder="Confirm Password">
+                                </input>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3">Register</button>
+                </form>
+                        <small class="py-2">    
+                            By signing up, you agree of ours <a href="">Terms</a> and <a href="">Services</a> 
+                        </small>              
+                            <p>
+                                Already have an account? <a href="{% url 'login' %}">Login </a>
+                            </p>
+                        
+                            <p>
+                                Forgot password? <a href="{% url 'request-reset-email' %}">Reset your password </a>
+                            </p>
+                        
+                    
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
+
