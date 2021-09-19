@@ -38,8 +38,7 @@ ab
         </li>
       </ul>
       </div>
-      <div class="container-fluid"></div>
-      <div class="container-fluid" style="justify-content: center; padding-left: 6%;">
+      <div class="container-fluid" style="display: flex; justify-content: center; padding-left: 25%;">
         <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/SpotLight_Logos/logo_m.png"  height="45" class="img-responsive" alt=""/></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -126,9 +125,9 @@ ab
         {% for pr in projects %}
             <div class="col">
             <div class="card shadow-sm">
-              <div class="overflow-hidden container" style="height: 250px;;">
+              <div class="overflow-hidden container center" style="height: 250px; display: flex; justify-content: center;">
                 {% if pr.image %}
-                  <img src="{{pr.image.url}}">
+                  <img src="{{pr.image.url}}" >
                 {% endif %}
                 
                 {% if not pr.image %}
