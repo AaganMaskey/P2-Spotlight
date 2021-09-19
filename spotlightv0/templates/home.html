@@ -82,13 +82,13 @@ ab
         {% for pr in projects %}
             <div class="col">
             <div class="card shadow-sm">
-              <div class="overflow-hidden " style="height: 120px;">
+              <div class="overflow-hidden container" style="height: 250px;;">
                 {% if pr.image %}
                   <img src="{{pr.image.url}}">
                 {% endif %}
                 
                 {% if not pr.image %}
-                  <img src="static/img/skull.jpg">
+                  <img src="static/img/no image.png">
                 {% endif %}
               </div>
 
