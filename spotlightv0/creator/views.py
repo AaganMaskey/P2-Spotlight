@@ -51,11 +51,13 @@ def Add_Creator(request):
     if not request.user.is_authenticated:
         return redirect('login')
     if request.method == 'POST':
+        image = request.FILES['image']
         name = request.POST['pname']  # The name mentioned in the text box should be mentioned here
         desc = request.POST['pdesc']
         cat = request.POST['category']
         try:
             creator_Basic.objects.create(
+                image=image,
                 title=name,
                 description = desc,
                 category = cat,
@@ -69,8 +71,8 @@ def Add_Creator(request):
     return render(request, 'create.html', p)    
 
 def View_Projects(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
+   # if not request.user.is_authenticated:
+     #   return redirect('login')
 
     data = creator_Basic.objects.all()
     prj = { "projects": data  }
