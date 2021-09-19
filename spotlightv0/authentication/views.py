@@ -41,7 +41,8 @@ class RegistrationView(View):
         threading.Thread.__init__(self)
         email = request.POST.get('email')
         username = request.POST.get('username')
-        name = request.POST.get('name')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
 
@@ -88,7 +89,8 @@ class RegistrationView(View):
         user = User.objects.create_user(username=username, email=email)
     
         user.set_password(password) 
-        user.first_name= name
+        user.first_name= first_name
+        user.last_name= last_name
         user.is_active = False
         user.save() 
 
