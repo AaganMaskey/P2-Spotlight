@@ -1,5 +1,5 @@
 from django import forms
-from .models import creator_Basic, creator_fund
+from .models import creator_Basic
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
@@ -16,6 +16,8 @@ class creatorBasic(forms.ModelForm):
 		fields = [
 			"title",
 			"description",
-			 'image'
+			 "image",
+			 "FundingGoal",
+			 "TargetLaunchDate"
 
 		]

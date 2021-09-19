@@ -13,7 +13,7 @@ def create(request):
     
 
 # relative import of forms
-from .models import creator_Basic, creator_fund
+from .models import creator_Basic
 from .forms import creatorBasic
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -55,12 +55,18 @@ def Add_Creator(request):
         name = request.POST['pname']  # The name mentioned in the text box should be mentioned here
         desc = request.POST['pdesc']
         cat = request.POST['category']
+        fund = request.POST['funding']
+        Tdate = request.POST['date']
+        
         try:
             creator_Basic.objects.create(
                 image=image,
                 title=name,
                 description = desc,
                 category = cat,
+                FundingGoal = fund,
+                TargetLaunchDate = Tdate
+
             
             )
             error = "no"
