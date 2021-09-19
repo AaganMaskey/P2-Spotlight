@@ -1,84 +1,141 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block content %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">SpotLight</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                {% comment %} <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-                </li> {% endcomment %}
-                <li class="nav-item">
-                <a class="nav-link" href="/profile" >
-                {{user.username}}
-                </a>
-                </li>
-                <li class="nav-item">
-                    <form action="{% url 'logout' %}" method="POST">
-                        {% csrf_token %}
-                <button class="btn border-0 bg-transparent" type="submit">
-                Logout
-                </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+{% extends "base.html" %} {% load static %} {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">SpotLight</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        {% comment %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        {% endcomment %}
+        <li class="nav-item">
+          <a class="nav-link" href="/profile"> {{user.username}} </a>
+        </li>
+        <li class="nav-item">
+          <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button class="btn border-0 bg-transparent" type="submit">
+              Logout
+            </button>
+          </form>
+        </li>
+      </ul>
     </div>
-    </nav>
+  </div>
+</nav>
 
-    <section class="container">
-        <div class="row py-4 mt-4" >
-            <div class="card shadow p-3 col-6 mx-auto">
-                <h2 class="text-center mb-4">Add Project</h2>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    
-                    <div class="form-group mb-3">
-                        <label> Project Name </label>
-                        <input type="text" class="form-control" name="pname" required>
-                    </div>
+<section class="container">
+  <div class="row py-4 mt-4">
+    <div class="card shadow p-3 col-6 mx-auto">
+      <h2 class="text-center mb-4">Add Project</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
 
-                    <div class="form-group mb-3">
-                        <label> Project Description </label>
-                        <textarea type="text" class="form-control" name="pdesc" rows="5" required></textarea>
-                    </div>
-                    
-                    <div class="form-group mb-3">
-                        <label> upload image </label>
-                        <input type="file" id="img" class="form-control" name="image" accept="image/*"> 
-                        <small class="text-danger">Note: Image should be less than 1 MB</small> 
-                    </div>
-
-                    {% comment %} <br> {% endcomment %}
-                    
-                    <div class="form-group mb-3">
-                        <label> Project Category</label>
-                        <select name="category" class="form-control" name="category" required>
-                            <option value="Art">Art</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Food">Food</option>
-                            <option value="Photography">Photography</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <input type="submit" value="Submit" class="form-control btn btn-primary">
-                    </div>
-                </form>
-            </div>
+        <div class="form-group mb-3">
+          <label> Project Category</label>
+          <select name="category" class="form-control" name="category" required>
+            <option value="Art">Art</option>
+            <option value="Technology">Technology</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Food">Food</option>
+            <option value="Photography">Photography</option>
+            <option value="Others">Others</option>
+          </select>
         </div>
-    </section>
 
+        <div class="form-group mb-3">
+          <label> Project Name </label>
+          <input type="text" class="form-control" name="pname" required />
+        </div>
+
+        <div class="form-group mb-3">
+          <label> Project Description </label>
+          <textarea
+            type="text"
+            class="form-control"
+            name="pdesc"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+          <label> upload image </label>
+          <input
+            type="file"
+            id="img"
+            class="form-control"
+            name="image"
+            accept="image/*"
+          />
+          <small class="text-danger"
+            >Note: Image should be less than 1 MB</small
+          >
+        </div>
+
+        {% comment %} <br />
+        {% endcomment %}
+
+        <div class="form-group mb-3">
+          <label> Fund Reciepient </label>
+          <select name="category" class="form-control" name="category" required>
+            <option value="Individual">individual</option>
+            <option value="Organization">organization</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="funding goal" class="Funding Goal">Funding Goal</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text">Rs.</span>
+            <input
+              type="text"
+              class="form-control"
+              id="fundingoal"
+              placeholder="amount"
+              required=""
+            />
+            <div class="invalid-feedback">amount is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+              <label for="email" class="form-label"> Target Launch Date <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="DD/MM/YYY">
+              <div class="invalid-feedback">
+                Please enter a valid date.
+              </div>
+            </div>
+
+
+
+        
+
+        <div class="form-group mb-3">
+          <input
+            type="submit"
+            value="Submit"
+            class="form-control btn btn-primary"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
 {% endblock %}
