@@ -90,6 +90,7 @@
 </nav>
     
 <body class="bg-light">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <div class="container">
         <br>
@@ -114,11 +115,11 @@
                                 <h6 class="text-muted">{{user.email}}</h6>
                                 
                             </div>
-                            <div class="col-sm-6">
+                            {% comment %}  <div class="col-sm-6">
                                 <h6 class="font-weight-bold">Phone:</h6>
                                 <h6 class="text-muted">+977-01-45285</h6>
 
-                            </div>
+                            </div> {% endcomment %}
                             <div class="col-sm-6">
                               <h6 class="font-weight-bold">Full Name:</h6>
                               <h6 class="text-muted">{{user.first_name}}</h6>
@@ -137,11 +138,27 @@
         <div class="container">
             <br>
           <h4 class="mb-3">{{user.username}}'s Address</h4>
-          <form class="needs-validation" novalidate="">
+          <form class="needs-validation" novalidate="" onsubmit="process(event)>
             
 
 
             <div class="mb-3">
+              <label for="Phone">Enter your phone number:</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">
+                  <select class="custom-select" id="countryCode" required="">
+                    <option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+	                  <option data-countryCode="US" value="1">USA (+1)</option>
+                    <option data-countryCode="IN" value="91">India (+91)</option>
+                    <option data-countryCode="NP" value="977">Nepal (+977)</option>
+                  </select>
+                </span>
+              
+              <input type="tel" class="form-control" id="phone" placeholder=" 012 564 2561" required=""name="phone">
+              <div class="invalid-feedback">
+                Please enter your Phone Number.
+              </div>
+            </div>
               <label for="address">Address</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
               <div class="invalid-feedback">
@@ -251,6 +268,4 @@
     </div>
     
 </body>
-
-
 {% endblock %}
