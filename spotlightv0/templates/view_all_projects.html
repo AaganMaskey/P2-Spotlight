@@ -1,39 +1,45 @@
+
 {% extends 'base.html' %}
 ab
 {% block content %}
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-3 mb-4 text-center">
-      <h2>{{details.title}}</h2>
+      <h2>All Projects</h2>
       </div>
 
-      <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-3">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for pr in projects %}
             <div class="col">
             <div class="card shadow-sm">
               <div class="overflow-hidden container center" style="height: 250px; display: flex; justify-content: center;">
-                {% if details.image %}
-                  <img src="{{details.image.url}}" >
+                {% if pr.image %}
+                  <img src="{{pr.image.url}}" >
                 {% endif %}
                 
-                {% if not details.image %}
+                {% if not pr.image %}
                   <img src="static/img/no image.png">
                 {% endif %}
               </div>
 
               <div class="card-body">
-              {% comment %} <h4>{{pr.title}}</h4> {% endcomment %}
-                <p class="card-text">{{details.description}}</p>
+              <h4>{{pr.title}}</h4>
+                <p class="card-text">{{pr.description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
+                    <a href="/creator/project/{{pr.id}}" class="btn btn-sm btn-outline-secondary">
+                      View
+                    </a>
                     <a href="/investor/investor" class="btn btn-sm btn-outline-secondary">
                       Fund
                     </a>
                   </div>
-                  <small class="text-muted">{{details.TargetLaunchDate}}</small>
+                  <small class="text-muted">{{pr.TargetLaunchDate}}</small>
                 </div>
               </div>
             </div>
           </div>
+        {% endfor %}
       </div>
     </div>
   </div>

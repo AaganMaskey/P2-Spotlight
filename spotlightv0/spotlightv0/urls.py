@@ -8,13 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from authentication import views
 from creator import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.View_Projects,name= 'home'),
     path('', include('authentication.urls')),
     path('investor/', include("investor.urls")),
     path('creator/', include("creator.urls")),
-    
 
 ]
 if settings.DEBUG:

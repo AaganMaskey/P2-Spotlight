@@ -2,103 +2,6 @@
 {% extends 'base.html' %}
 ab
 {% block content %}
-{% comment %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light card shadow">
-  <div class="container-fluid" style="display: flex; justify-content: space-around">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/SpotLight_Logos/logo_mini1.png"  height="45" class="img-responsive" alt=""/></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Explore
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/creator/create">Create Project</a></li>
-            <li><a class="dropdown-item" href="/investor/investor">Fund Project</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">About Us</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categories
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Art</a></li>
-            <li><a class="dropdown-item" href="#">Technology</a></li>
-            <li><a class="dropdown-item" href="#">Fashion</a></li>
-            <li><a class="dropdown-item" href="#">Food</a></li>
-            <li><a class="dropdown-item" href="#">Photography</a></li>
-            <li><a class="dropdown-item" href="#">Others</a></li>
-          </ul>
-        </li>
-      </ul>
-      </div>
-      <div class="container-fluid" style="display: flex; justify-content: center; padding-left: 25%;">
-        <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/SpotLight_Logos/logo_m.png"  height="45" class="img-responsive" alt=""/></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-      </div>
-      <div class="container-fluid" style="display: flex; justify-content: flex-end">
-            <form class="d-flex">
-              <input class="form-control" type="search" style="width: 200px;" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-                <ul class="navbar-nav">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {% if not user.is_authenticated %}
-                          Login
-                          {% endif %}
-                           {% if user.is_authenticated %}
-                           {{user.username}}
-
-                          {% endif %}
-                            {% csrf_token %}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class=" dropdown-item nav-link" href="/profile/{{user.username}}" >
-                        My Account
-                        </a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      </li>
-                      <li class="nav-item">
-                          {% if not user.is_authenticated %}
-                          <form action="{% url 'login' %}" method="GET">
-                            <button class="btn btn-warning" type="submit">
-                              Login
-                              {% endif %}
-                               {% if user.is_authenticated %}
-                          <form action="{% url 'logout' %}" method="POST">
-                              <button class="btn border-0 bg-transparent" type="submit">
-                              Logout
-    
-                              {% endif %}
-                                {% csrf_token %}
-                        </li>
-                  </li>
-               </ul>
-              </form>
-        </div>
-      </div>
-  </div>
-</nav>{% endcomment %}
-        {% comment %} <input type="submit" value="Logout" class="btn bth-info"> {% endcomment %}
-                </button>
-
-        <main>
-
-                    </form>
-        
-
-  <!section class="py-5 text-center container">
   <section class=" text-center">
     <div style="background-image: url('/static/img/bg_light.png');background-size: cover; height:480px;">
     <div class="row py-lg-5" >
@@ -117,13 +20,15 @@ ab
   </div>
   </section>
 
-
   <div class="album py-5 bg-light">
     <div class="container">
 
+      <div class="text-left my-4">
+        <h2>FEATURED PROJECT</h2>
+      </div>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for pr in projects %}
+        {% for pr in projects|slice:":9" %}
             <div class="col">
             <div class="card shadow-sm">
               <div class="overflow-hidden container center" style="height: 250px; display: flex; justify-content: center;">
@@ -141,178 +46,27 @@ ab
                 <p class="card-text">{{pr.description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="/creator/project" ><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-                    <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
+                    <a href="/creator/project/{{pr.id}}" class="btn btn-sm btn-outline-secondary">
+                      View
+                    </a>
+                    <a href="/investor/investor" class="btn btn-sm btn-outline-secondary">
+                      Fund
+                    </a>
                   </div>
-                  <small class="text-muted">10 mins</small>
+                  <small class="text-muted">{{pr.TargetLaunchDate}}</small>
                 </div>
               </div>
             </div>
           </div>
         {% endfor %}
+      </div>
 
-        {% comment %} <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/skull.jpg">
-            <div class="card-body">
-              <p class="card-text">Knock ‘em dead with these four stylish silicone skulls. Nomskulls are ready to fill with your favorite grey batter and bake into perfect cupcake craniums. One bite and you’ll be head over heels, because there’s no doubt about it — this skull bone’s connected to the YUM bone!</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">10 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/comb.jpg">
-
-            <div class="card-body">
-              <p class="card-text">Somehow, this one reminds me of t a Japanese animation “bleach”.
-
-                Messy hair is a thing of the past! We’ve combed through the Cretaceous to come up with just the thing to keep your hair from wigging out. Bone Head takes its cue from the fossil record to provide a comb and brush combo that works with prehistoric precision. The flexible teeth are strong enough to chomp through your tangles yet gentle enough to keep you smiling through the process</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">15 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/ink.jpg">
-
-            <div class="card-body">
-              <p class="card-text">This 300-page sticky notepad is perfect for poison pen notes, letters of resignation, hit lists, and office to-do’s. Murder, Ink comes complete with blood spattered pen, so it’s sure to make a statement on your desk right beside that suspiciously sharp letter opener.
-
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">25 min</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/Buld.jpg">
-
-            <div class="card-body">
-              <p class="card-text">It’s wonderful to see how many new gadgets and bizarre products have been released recently and we see more and more creativity in product design popping up daily. In this post, we have collected some bizarre and unusual products; all of them have weird and unordinary look. What do you think?</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">44 min</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/Analog_Phone charger.jpg">
-
-            <div class="card-body">
-              <p class="card-text">The iRetrofone Base is a fully-functional, stationary iPhone dock with working handset and complete compatibility with USB cable. Each individual iRetrofone is hand-sculpted and hand-cast in urethane resin. The iRetrofone base is made of heavy-duty, half-inch thick urethane resin creating a stable, functional work station that routes voice communications through the included handset.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">1 day</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/cookey.jpg">
-
-            <div class="card-body">
-              <p class="card-text">These stealthy warriors are set to sneak into your kitchen and stage a cookie coup! Cut, bake, decorate…and then watch them disappear! Ninjabread Men are molded from rugged, food-safe ABS plastic and packaged in a colorful giftbox.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">3 days</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/Sleeping pillow.jpg">
-
-            <div class="card-body">
-              <p class="card-text">DREAM IN STYLE: The revolutionary media sensation OSTRICHPILLOW ORIGINAL is the ultimate immersive pillow! Use it for a power nap at your desk, lounging at home, or wherever you may be, without moving an inch. Just slip it on and you're off to dreamland</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">5 days</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/toaster.jpg">
-
-            <div class="card-body">
-              <p class="card-text">In the beginning…there was bread. Ho hum. Make that boring bread an inspiration by embossing it before you toast! Our easy-to-use Holy Toast stamper always makes a good impression.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">13 days</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="static/img/typescreen-ipad.jpg">
-
-            <div class="card-body">
-              <p class="card-text">We have featured quite a few different docks and accessories for the iPad here at Geeky Gadgets, the latest one is called the Typescreen, and it is basically a typewriter style keyboard dock for the iPad and iPad 2.
-
-                Unlike previous versions we have seen, this one actually physically types on the iPad’s keyboard when you press a key on the typewriter, which is certainly a unique way to type emails and notes on your iPad.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <a href="/investor/investor"><button type="button" class="btn btn-sm btn-outline-secondary">Fund</button></a>
-                </div>
-                <small class="text-muted">17 days</small>
-              </div>
-            </div>
-          </div>
-        </div> {% endcomment %}
+      <div class="w-100 pt-3 text-center" >
+        <a class="btn btn-success" href="/creator/projects">Explore Projects</a>
       </div>
     </div>
   </div>
 
 </main>
-
-
-
-
-
-
 
 {% endblock %}
