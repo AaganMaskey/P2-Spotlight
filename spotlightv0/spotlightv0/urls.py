@@ -14,7 +14,7 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('investor/', include("investor.urls")),
     path('creator/', include("creator.urls")),
-    path('profile/', login_required(views.ProfileView.as_view()),name='profile'),
+    path('profile/<str:username>', login_required(views.ProfileView.as_view()),name='profile'),
 
 ]
 if settings.DEBUG:

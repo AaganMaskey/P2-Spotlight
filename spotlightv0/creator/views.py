@@ -36,7 +36,7 @@ def create_view(request):
 	return render(request, "create_view.html", context)
 
 class ProfileView(View):
-    def get (self,request):
+    def get (self,request, username):
        return render(request, 'profile.html')
 
 
