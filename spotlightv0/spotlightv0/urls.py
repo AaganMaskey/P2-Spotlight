@@ -16,7 +16,7 @@ urlpatterns = [
     path('investor/', include("investor.urls")),
     path('creator/', include("creator.urls")),
     path('profile/<str:username>', login_required(views.ProfileView.as_view()),name='profile'),
-    path('', include('payments.urls'))
+    #path('', include('payments.urls'))
 
 
 ]

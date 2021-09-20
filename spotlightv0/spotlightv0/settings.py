@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'investor',
     'creator',
-    'paypal_integration'
+    #'paypal_integration'
 ]
 
 MIDDLEWARE = [
