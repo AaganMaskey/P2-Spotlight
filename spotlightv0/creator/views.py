@@ -55,6 +55,7 @@ def Add_Creator(request):
         name = request.POST['pname']  # The name mentioned in the text box should be mentioned here
         desc = request.POST['pdesc']
         cat = request.POST['category']
+        rec = request.POST['reciepient']
         fund = request.POST['funding']
         Tdate = request.POST['date']
         
@@ -64,6 +65,7 @@ def Add_Creator(request):
                 title=name,
                 description = desc,
                 category = cat,
+                reciepient = rec,
                 FundingGoal = fund,
                 TargetLaunchDate = Tdate
 

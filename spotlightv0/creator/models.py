@@ -10,6 +10,7 @@ class creator_Basic(models.Model):
   
     title = models.CharField(max_length=25)
     category = models.CharField(max_length=100)
+    reciepient = models.CharField(max_length=100)
     description=models.TextField()
     image = models.ImageField(upload_to='media/static/img')
     FundingGoal=models.IntegerField(default='0')

@@ -5,7 +5,7 @@ from creator.models import creator_Basic
 from django.contrib import admin
 
 class creatorAdmin(admin.ModelAdmin):
-    list_display    = ['title','description','category',]
+    list_display    = ['title','description','category','image','reciepient','FundingGoal','TargetLaunchDate']
 
 
       
