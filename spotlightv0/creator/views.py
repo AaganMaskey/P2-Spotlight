@@ -35,7 +35,7 @@ def create_view(request):
 	context['form']= form
 	return render(request, "create_view.html", context)
 
-class ProfileView(View):
+class ProfileView(request, username):
     def get (self,request):
        return render(request, 'profile.html')
 
