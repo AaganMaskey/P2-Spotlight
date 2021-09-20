@@ -86,6 +86,14 @@ def View_Projects(request):
     prj = { "projects": data  }
     return render(request, "home.html", prj)
 
+def Project_view(request):
+	# dictionary for initial data with
+	# field names as keys
+	return render(request,"View.html",)
+
+
+	# add the dictionary during initialization
+
     # create = creator_Basic.objects.all()
     # projects = {'create': create}
     # return render(request, 'home.html', projects)
