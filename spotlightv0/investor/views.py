@@ -18,7 +18,7 @@ def investor(request):
 def investor_view(request):
 	# dictionary for initial data with
 	# field names as keys
-	return render(request,"investor.html",)
+	return render(request,"investor-checkout.html",)
 
 
 	# add the dictionary during initialization
