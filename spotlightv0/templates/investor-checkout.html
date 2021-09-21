@@ -2,6 +2,24 @@
 {% load static %}
 {% block content %}
 <body>
+<section class="container">
+  <div class="row py-4 mt-4">
+    <div class="card shadow p-3 col-6 mx-auto">
+          <div class="form-group mb-3">
+          <label for="Pledge amount" class="pledgeAmount">Pledge amount</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text">Rs.</span>
+            <input
+              type="text"
+              class="form-control"
+              id="pledgeamount"
+              placeholder="amount"
+              name="amount"
+              required=""
+            />
+            <div class="invalid-feedback">amount is required.</div>
+          </div>
+        </div>
   <!-- Set up a container element for the button -->
   <div id="paypal-button-container"></div>
 
@@ -42,5 +60,10 @@
 
       }).render('#paypal-button-container');
   </script>
+  </div>
+  </div>
+</section>
+
+
 </body>
 {% endblock %}
