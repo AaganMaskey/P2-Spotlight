@@ -78,7 +78,7 @@
             />
             {% endif %} {% if not pr.image %}
             <img
-              src="static/img/no image.png"
+              src="../static/img/no image.png"
               class="card-img-top"
               alt="{{pr.title}}"
             />
@@ -88,7 +88,7 @@
               <h5 class="card-title">{{pr.title}}</h5>
               <small>{{pr.TargetLaunchDate}}</small>
               <p class="card-text">{{pr.description}}</p>
-              <a href="creator/project/{{pr.id}}" class="btn btn-primary btn-sm"
+              <a href="{{pr.id}}" class="btn btn-primary btn-sm"
                 >View</a
               >
             </div>
