@@ -20,6 +20,14 @@
             <div class="invalid-feedback">amount is required.</div>
           </div>
         </div>
+
+                <div class="form-group mb-3">
+          <input
+            type="submit"
+            value="Enter"
+            class="form-control btn btn-primary"
+          />
+        </div>
   <!-- Set up a container element for the button -->
   <div id="paypal-button-container"></div>
 
@@ -35,7 +43,7 @@
               return actions.order.create({
                   purchase_units: [{
                       amount: {
-                          value: '1111.11'
+                           value: '1123'
                       }
                   }]
               });
