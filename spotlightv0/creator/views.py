@@ -95,7 +95,7 @@ def View_Projects(request):
 
 def View_Projects_Details(request, pid):
     projObj = creator_Basic.objects.get(pk=pid)
-    return render(request, "View.html", {"details": projObj})
+    return render(request, "view-project-details.html", {"details": projObj})
 
 # class View_Projects_Details(View):
 #     def get(self, request, pid):
