@@ -93,6 +93,7 @@ def View_Projects(request):
 #     prj = {"projects": data}
 #     return render(request, "home.html", prj)
 
+
 def View_Projects_Details(request, pid):
     projObj = creator_Basic.objects.get(pk=pid)
     projLists = creator_Basic.objects.all()
@@ -106,6 +107,7 @@ def View_Projects_Details(request, pid):
 #             projObj = None
 
 #         return render(request, "View.html", {"details": projObj} )
+
 
 def Projects_view(request):
     data = creator_Basic.objects.all().order_by('-TargetLaunchDate')

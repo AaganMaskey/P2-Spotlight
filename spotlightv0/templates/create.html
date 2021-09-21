@@ -1,14 +1,17 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-
 <section class="container">
   <div class="row py-4 mt-4">
     <div class="card shadow p-3 col-6 mx-auto">
-      
-            <img class="d-block mx-auto mb-4" src="/static/SpotLight_Logos/logo_mini2.png" alt="" height="15%" width="15%" >
-        
+      <img
+        class="d-block mx-auto mb-4"
+        src="/static/SpotLight_Logos/logo_mini2.png"
+        alt=""
+        height="15%"
+        width="15%"
+      />
 
-        <h2 class="text-center mb-4">Add Project</h2>
+      <h2 class="text-center mb-4">Add Project</h2>
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form.as_p }}
 
@@ -59,7 +62,12 @@
 
         <div class="form-group mb-3">
           <label> Fund Reciepient </label>
-          <select name="reciepient" class="form-control" name="reciepient" required>
+          <select
+            name="reciepient"
+            class="form-control"
+            name="reciepient"
+            required
+          >
             <option value="Individual">individual</option>
             <option value="Organization">organization</option>
           </select>
@@ -82,16 +90,18 @@
         </div>
 
         <div class="form-group mb-3">
-              <label for="date" class="form-label"> Target Launch Date <span class="text-muted">(Optional)</span></label>
-              <input type="date" class="form-control" id="date" name="date" placeholder="DD/MM/YYY">
-              <div class="invalid-feedback">
-                Please enter a valid date.
-              </div>
-            </div>
-
-
-
-        
+          <label for="date" class="form-label">
+            Target Launch Date <span class="text-muted">(Optional)</span></label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            name="date"
+            placeholder="DD/MM/YYY"
+          />
+          <div class="invalid-feedback">Please enter a valid date.</div>
+        </div>
 
         <div class="form-group mb-3">
           <input
