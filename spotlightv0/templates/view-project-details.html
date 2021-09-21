@@ -1,43 +1,103 @@
-{% extends 'base.html' %}
-ab
-{% block content %}
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-3 mb-4 text-center">
-      <h2>{{details.title}}</h2>
-      </div>
+{% extends 'base.html' %} {% block content %}
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-8 mb-4">
+        <div
+          class="
+            row row-cols-12 row-cols-sm-12 row-cols-md-12
+            g-3
+            mb-4
+            text-left
+          "
+        >
+          <h2>{{details.title}}</h2>
+        </div>
 
-      <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-3">
-            <div class="col">
+        <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-3">
+          <div class="col">
             <div class="card shadow-sm">
-              <div class="overflow-hidden container center" style="height: 250px; display: flex; justify-content: center;">
+              <div
+                class="overflow-hidden container center p-0 m-0"
+                style="height: 250px; display: flex; justify-content: center"
+              >
                 {% if details.image %}
-                  <img src="{{details.image.url}}" >
-                {% endif %}
-                
-                {% if not details.image %}
-                  <img src="static/img/no image.png">
+                <img
+                  src="{{details.image.url}}"
+                  class="img-fluid w-100"
+                  onerror="this.onerror=null;this.src='static/img/no image.png';"
+                />
+                {% endif %} {% if not details.image %}
+                <img src="static/img/no image.png" class="img-fluid w-100" />
                 {% endif %}
               </div>
 
               <div class="card-body">
-              {% comment %} <h4>{{pr.title}}</h4> {% endcomment %}
+                {% comment %}
+                <h4>{{pr.title}}</h4>
+                {% endcomment %}
+                <small class="text-muted">{{details.TargetLaunchDate}}</small>
                 <p class="card-text">{{details.description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="/investor/checkout/{{pr.id}}" class="btn btn-sm btn-outline-secondary">
+                    <a
+                      href="/investor/checkout/{{details.id}}"
+                      class="btn btn-sm btn-outline-secondary"
+                    >
                       Fund
                     </a>
                   </div>
-                  <small class="text-muted">{{details.TargetLaunchDate}}</small>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-4">
+        <div
+          class="
+            row row-cols-12 row-cols-sm-12 row-cols-md-12
+            g-3
+            mb-4
+            text-left
+          "
+        >
+          <h2>Other Projects</h2>
+        </div>
+
+        {% for pr in projects|slice:":6" %}
+        <div class="row row-cols-12 row-cols-sm-12 row-cols-md-12 g-3 mb-4">
+          <div class="card w-100">
+            {% if pr.image %}
+            <img
+              src="{{pr.image.url}}"
+              class="card-img-top"
+              alt="{{pr.title}}"
+              onerror="this.onerror=null;this.src='static/img/no image.png';"
+            />
+            {% endif %} {% if not pr.image %}
+            <img
+              src="static/img/no image.png"
+              class="card-img-top"
+              alt="{{pr.title}}"
+            />
+            {% endif %}
+
+            <div class="card-body">
+              <h5 class="card-title">{{pr.title}}</h5>
+              <small>{{pr.TargetLaunchDate}}</small>
+              <p class="card-text">{{pr.description}}</p>
+              <a href="creator/project/{{pr.id}}" class="btn btn-primary btn-sm"
+                >View</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
-
-</main>
+</div>
 
 {% endblock %}

@@ -1,77 +1,111 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<body>
+{% extends "base.html" %} {% load static %} {% block content %}
 <section class="container">
-  <div class="row py-4 mt-4">
-    <div class="card shadow p-3 col-6 mx-auto">
-          <div class="form-group mb-3">
-          <label for="Pledge amount" class="pledgeAmount">Pledge amount</label>
+  <form method="POST" >
+    {% csrf_token %} {{p}}
+    <div class="row py-4 mt-4">
+      <input value="{{user.username}}" name="userName" hidden />
+      <input value="{{user.id}}" name="userId" hidden />
+      <input value="{{fundProject.id}}" name="projectId" hidden />
+
+      <div class="card shadow p-3 col-6 mx-auto">
+        <div class="form-group mb-3">
+          <label for="projectName" class="pledgeAmount">Project Name</label>
           <div class="input-group has-validation">
-            <span class="input-group-text">Rs.</span>
+            <span class="input-group-text">
+              <i class="far fa-file-alt"></i>
+            </span>
             <input
               type="text"
+              class="form-control"
+              id="projectName"
+              name="projectName"
+              placeholder="Project name"
+              value="{{fundProject.title}}"
+              disabled
+            />
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="Pledge amount" class="pledgeAmount">Pledge amount</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text">
+              <i class="fas fa-dollar-sign"></i>
+            </span>
+            <input
+              type="number"
               class="form-control"
               id="pledgeamount"
               placeholder="amount"
               name="amount"
               required=""
             />
-            <div class="invalid-feedback">amount is required.</div>
+            <div class="invalid-feedback">Amount is required.</div>
           </div>
         </div>
 
-                <div class="form-group mb-3">
-          <input
-            type="submit"
-            value="Enter"
-            class="form-control btn btn-primary"
-          />
+        <div class="form-group mb-3">
+          <button type="submit" class="form-control btn btn-primary">
+            Enter
+          </button>
         </div>
-  <!-- Set up a container element for the button -->
-  <div id="paypal-button-container"></div>
+        <!-- Set up a container element for the button -->
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+  </form>
+</section>
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=AfN7jBC92grJ3uFuFvKKMaJDArOP-LED6zuqJc0-at3UYU0uL4CQx82JT69N_bmzm-IYmWILjIckLIPr&currency=USD"></script>
 
-  <!-- Include the PayPal JavaScript SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AfN7jBC92grJ3uFuFvKKMaJDArOP-LED6zuqJc0-at3UYU0uL4CQx82JT69N_bmzm-IYmWILjIckLIPr&currency=USD"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
 
-  <script>
-      // Render the PayPal button into #paypal-button-container
-      paypal.Buttons({
-
-          // Set up the transaction
-          createOrder: function(data, actions) {
-              return actions.order.create({
-                  purchase_units: [{
+          // Render the PayPal button into #paypal-button-container
+          paypal
+            .Buttons({
+              // Set up the transaction
+              createOrder: function (data, actions) {
+                return actions.order.create({
+                  purchase_units: [
+                    {
                       amount: {
-                           value: '1123'
-                      }
-                  }]
-              });
-          },
+                        value: document.getElementById("pledgeamount").value,
+                      },
+                    },
+                  ],
+                });
+              },
 
-          // Finalize the transaction
-          onApprove: function(data, actions) {
-              return actions.order.capture().then(function(orderData) {
+              // Finalize the transaction
+              onApprove: function (data, actions) {
+                return actions.order.capture().then(function (orderData) {
                   // Successful capture! For demo purposes:
-                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                  console.log(
+                    "Capture result",
+                    orderData,
+                    JSON.stringify(orderData, null, 2)
+                  );
                   var transaction = orderData.purchase_units[0].payments.captures[0];
-                  alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                  alert(
+                    "Transaction " +
+                      transaction.status +
+                      ": " +
+                      transaction.id +
+                      "\n\nSee console for all available details"
+                  );
 
                   // Replace the above to show a success message within this page, e.g.
                   // const element = document.getElementById('paypal-button-container');
                   // element.innerHTML = '';
                   // element.innerHTML = '<h3>Thank you for your payment!</h3>';
                   // Or go to another URL:  actions.redirect('thank_you.html');
-              });
-          }
+                });
+              },
+            })
+            .render("#paypal-button-container");
 
+    });
+</script>
 
-      }).render('#paypal-button-container');
-  </script>
-  </div>
-  </div>
-</section>
-
-
-</body>
 {% endblock %}

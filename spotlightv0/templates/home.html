@@ -33,7 +33,7 @@ ab
             <div class="card shadow-sm">
               <div class="overflow-hidden container center" style="height: 250px; display: flex; justify-content: center;">
                 {% if pr.image %}
-                  <img src="{{pr.image.url}}" >
+                  <img src="{{pr.image.url}}" onerror="this.onerror=null;this.src='static/img/no image.png';">
                 {% endif %}
                 
                 {% if not pr.image %}
