@@ -9,5 +9,6 @@ class investor_fund(models.Model):
     userid = models.CharField(max_length=25, blank=True)
     projectid = models.CharField(max_length=25, blank=True)
     pledgeAmount = models.IntegerField(default='0')
+    transactiondata = models.CharField(max_length=255, blank=True)
     created_at = models.DateField(default=now, blank=True)
     updated_at = models.DateField(default=now, blank=True)

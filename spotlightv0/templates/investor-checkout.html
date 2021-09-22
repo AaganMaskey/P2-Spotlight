@@ -1,11 +1,17 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <section class="container">
-  <form method="POST" >
+  <form method="POST">
     {% csrf_token %} {{p}}
-    <div class="row py-4 mt-4">
+    <div class="row py-4 mt-4" id="dynamicTransactionData">
       <input value="{{user.username}}" name="userName" hidden />
       <input value="{{user.id}}" name="userId" hidden />
-      <input value="{{fundProject.id}}" name="projectId" hidden />
+      <input value="" name="transactionData" id ="transactionData"hidden />
+      <input
+        value="{{fundProject.id}}"
+        id="projectId"
+        name="projectId"
+        hidden
+      />
 
       <div class="card shadow p-3 col-6 mx-auto">
         <div class="form-group mb-3">
@@ -45,7 +51,12 @@
         </div>
 
         <div class="form-group mb-3">
-          <button type="submit" class="form-control btn btn-primary">
+          <button
+            type="submit"
+            hidden
+            id="fund-save"
+            class="form-control btn btn-primary"
+          >
             Enter
           </button>
         </div>
@@ -59,53 +70,63 @@
 <script src="https://www.paypal.com/sdk/js?client-id=AfN7jBC92grJ3uFuFvKKMaJDArOP-LED6zuqJc0-at3UYU0uL4CQx82JT69N_bmzm-IYmWILjIckLIPr&currency=USD"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function(event) { 
-
-          // Render the PayPal button into #paypal-button-container
-          paypal
-            .Buttons({
-              // Set up the transaction
-              createOrder: function (data, actions) {
-                return actions.order.create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: document.getElementById("pledgeamount").value,
-                      },
-                    },
-                  ],
-                });
+  document.addEventListener("DOMContentLoaded", function (event) {
+    // Render the PayPal button into #paypal-button-container
+    paypal
+      .Buttons({
+        // Set up the transaction
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: document.getElementById("pledgeamount").value,
+                },
               },
+            ],
+          });
+        },
 
-              // Finalize the transaction
-              onApprove: function (data, actions) {
-                return actions.order.capture().then(function (orderData) {
-                  // Successful capture! For demo purposes:
-                  console.log(
-                    "Capture result",
-                    orderData,
-                    JSON.stringify(orderData, null, 2)
-                  );
-                  var transaction = orderData.purchase_units[0].payments.captures[0];
-                  alert(
-                    "Transaction " +
-                      transaction.status +
-                      ": " +
-                      transaction.id +
-                      "\n\nSee console for all available details"
-                  );
+        // Finalize the transaction
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (orderData) {
+            // Successful capture! For demo purposes:
+            var transaction = orderData.purchase_units[0].payments.captures[0];
+            
+            {% comment %} var container = document.getElementById("dynamicTransactionData");
+            var input = document.createElement("input");
+              input.type = "text";
+              input.name = "transactionData";
+              input.value = transaction.id;
+              input.hidden = "true";
+            container.appendChild(input); {% endcomment %}
 
-                  // Replace the above to show a success message within this page, e.g.
-                  // const element = document.getElementById('paypal-button-container');
-                  // element.innerHTML = '';
-                  // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                  // Or go to another URL:  actions.redirect('thank_you.html');
-                });
-              },
-            })
-            .render("#paypal-button-container");
-
-    });
+            console.log(
+              "Capture result",
+              orderData,
+              JSON.stringify(orderData, null, 2)
+            );
+            alert(
+              "Transaction " +
+                transaction.status +
+                ": " +
+                transaction.id +
+                "\n\nSee console for all available details"
+            );
+            setTimeout(function () {
+              document.getElementById("transactionData").value = transaction.id;
+              document.getElementById("fund-save").click();
+            }, 2500);
+            // Replace the above to show a success message within this page, e.g.
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '';
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+          });
+        },
+      })
+      .render("#paypal-button-container");
+  });
 </script>
 
 {% endblock %}

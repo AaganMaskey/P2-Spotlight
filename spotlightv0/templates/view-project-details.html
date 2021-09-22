@@ -39,6 +39,27 @@
                 <small class="text-muted">{{details.TargetLaunchDate}}</small>
                 <p class="card-text">Created By {{details.Author}}</p>
                 <p class="card-text">{{details.description}}</p>
+
+                <div class="mb-3">
+                  <div class="progress">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      style="width: {{details.pledgeAmountInPercentage}}%"
+                      aria-valuenow="{{details.pledgeAmountInPercentage}}"
+                      aria-valuemin="0"
+                      aria-valuemax="{{details.FundingGoalInPercentage}}"
+                    ></div>
+                  </div>
+
+                  <h3 class="text-success font-lg font-bolg mb-2">
+                    US$ {{details.pledgeAmount}}
+                  </h3>
+                  <div class="text-success">
+                    pledged of US$ {{details.FundingGoal}} goal
+                  </div>
+                </div>
+
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a
@@ -89,9 +110,7 @@
               <h5 class="card-title">{{pr.title}}</h5>
               <small>{{pr.TargetLaunchDate}}</small>
               <p class="card-text">{{pr.description}}</p>
-              <a href="{{pr.id}}" class="btn btn-primary btn-sm"
-                >View</a
-              >
+              <a href="{{pr.id}}" class="btn btn-primary btn-sm">View</a>
             </div>
           </div>
         </div>

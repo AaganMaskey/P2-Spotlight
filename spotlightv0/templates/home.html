@@ -43,7 +43,7 @@ ab
 
               <div class="card-body">
               <h4>{{pr.title}}</h4>
-                <p class="card-text">{{pr.description}}</p>
+                <p class="card-text">{{pr.description|truncatechars:140}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a href="/creator/project/{{pr.id}}" class="btn btn-sm btn-outline-secondary">

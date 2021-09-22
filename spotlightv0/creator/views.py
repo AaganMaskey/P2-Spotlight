@@ -65,7 +65,7 @@ def Add_Creator(request):
         try:
             creator_Basic.objects.create(
                 image=image,
-                Author = Auth,
+                Author=Auth,
                 title=name,
                 description=desc,
                 category=cat,
@@ -98,6 +98,8 @@ def View_Projects(request):
 
 def View_Projects_Details(request, pid):
     projObj = creator_Basic.objects.get(pk=pid)
+    projObj.FundingGoalInPercentage = projObj.FundingGoal / 100
+    projObj.pledgeAmountInPercentage = projObj.pledgeAmount / 100
     projLists = creator_Basic.objects.all()
     return render(request, "view-project-details.html", {"details": projObj, "projects": projLists})
 

@@ -28,12 +28,14 @@ def investor_checkout_view(request, pid):
             projectId = request.POST['projectId']
             userId = request.POST['userId']
             userName = request.POST['userName']
+            transactionData = request.POST['transactionData']
 
             try:
                 investor_fund.objects.create(
                     pledgeAmount=amount,
                     userid=userId,
                     username=userName,
+                    transactiondata=transactionData,
                     projectid=projectId
                 )
                 obj = creator_Basic.objects.get(pk=projectId)
