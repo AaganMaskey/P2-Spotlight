@@ -7,7 +7,7 @@ class profile_Basic(models.Model):
     User = models.CharField(max_length=25)
     Email = models.EmailField(max_length=25)
     Phone = models.IntegerField(default='0')
-    Adress = models.CharField(max_length=25)
+    Address = models.CharField(max_length=25)
     Funded = models.IntegerField(default='0')
     Projects = models.CharField(max_length=100)
     
