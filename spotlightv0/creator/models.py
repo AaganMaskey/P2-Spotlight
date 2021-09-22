@@ -7,6 +7,7 @@ from django.utils.timezone import now
 
 class creator_Basic(models.Model):
 
+    Author = models.CharField(max_length=25)
     title = models.CharField(max_length=25)
     category = models.CharField(max_length=100)
     reciepient = models.CharField(max_length=100)

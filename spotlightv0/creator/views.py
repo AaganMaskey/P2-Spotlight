@@ -55,6 +55,7 @@ def Add_Creator(request):
         image = request.FILES['image']
         # The name mentioned in the text box should be mentioned here
         name = request.POST['pname']
+        Auth = request.user.username
         desc = request.POST['pdesc']
         cat = request.POST['category']
         rec = request.POST['reciepient']
@@ -64,6 +65,7 @@ def Add_Creator(request):
         try:
             creator_Basic.objects.create(
                 image=image,
+                Author = Auth,
                 title=name,
                 description=desc,
                 category=cat,
