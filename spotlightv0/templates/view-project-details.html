@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- old version ui -->
+<!--
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
@@ -27,6 +28,7 @@
                 <img
                   src="{{details.image.url}}"
                   class="img-fluid w-100"
+                  style="max-width: 100%"
                   onerror="this.onerror=null;this.src='static/img/no image.png';"
                 />
                 {% endif %} {% if not details.image %}
@@ -120,11 +122,11 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 
 <!-- new updated -->
-<!-- <div class="blog-single gray-bg">
+ <div class="blog-single gray-bg">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-8 mb-4">
@@ -150,7 +152,7 @@
                                 <div class="media-body">
                                   
                                     <label>Created By {{details.Author}}</label>
-                                    <!-- <span>{{details.TargetLaunchDate}}</span> 
+                                    <!-- <span>{{details.TargetLaunchDate}}</span> -->
                                 </div>
                             </div>
                         </div>
@@ -163,7 +165,7 @@
                     <div
                       class="progress-bar bg-success"
                       role="progressbar"
-                      #style="width: {{details.pledgeAmountInPercentage}}%"
+                      style="width: {{details.pledgeAmountInPercentage}}%"
                       aria-valuenow="{{details.pledgeAmountInPercentage}}"
                       aria-valuemin="0"
                       aria-valuemax="{{details.FundingGoalInPercentage}}"
@@ -194,7 +196,7 @@
                 </div>
                 
 
-            <!-- for other project 
+            <!-- for other project -->
             <div class="col-sm-12 col-md-12 col-lg-4">
         <div
           class="
@@ -239,9 +241,9 @@
 
       </div>
     </div>
-  </div>-->
+  </div>
 
-{% comment %}
+
 <style>
   body{margin-top:20px;}
 .blog-listing {
@@ -648,7 +650,7 @@ img {
 }
 
 </style>
-{%  endcomment %}
+
 
 
 {% endblock %}
