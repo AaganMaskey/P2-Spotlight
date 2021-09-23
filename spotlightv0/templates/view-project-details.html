@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <!-- old version ui -->
 <!-- <div class="album py-5 bg-light">
@@ -163,7 +164,7 @@
                     <div
                       class="progress-bar bg-success"
                       role="progressbar"
-                      style="width: {{details.pledgeAmountInPercentage}}%"
+                      #style="width:{{details.pledgeAmountInPercentage}}"
                       aria-valuenow="{{details.pledgeAmountInPercentage}}"
                       aria-valuemin="0"
                       aria-valuemax="{{details.FundingGoalInPercentage}}"
@@ -511,10 +512,8 @@
   font-size: 22px;
 }
 img {
-    max-width: 100%;
-}
-img {
     vertical-align: middle;
+    max-width: 100%;
     border-style: none;
 }
 
