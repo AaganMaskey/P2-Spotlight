@@ -11,6 +11,7 @@
             <h5 class="card-title text-muted">
               Provide your email to recieve reset instructions
             </h5>
+            <p></p>
 
             {% include 'partials/_flash_messages.html'%}
 
@@ -26,6 +27,7 @@
                   placeholder="Email"
                 />
               </div>
+              <p></p>
               <input
                 type="submit"
                 value="Submit"
@@ -38,8 +40,9 @@
         <div class="card mt-4">
           <div class="card-body">
             <p>
-              Already have an account?<a href="{%url 'login'%}">Login</a> Dont
-              have an account?<a href="{%url 'register'%}">Register</a>
+              Already have an account? <a href="{%url 'login'%}">Login</a>
+              <p>Dont
+              have an account? <a href="{%url 'register'%}">Register</a></p> 
             </p>
           </div>
         </div>
