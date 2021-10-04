@@ -11,7 +11,8 @@ from django.urls import reverse
 
 # Create your views here.
 
-
+def team(request):
+    return render(request, "Our_team.html")
 def create(request):
     print("hello world!")
     return render(request, "create.html")
