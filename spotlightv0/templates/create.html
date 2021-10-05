@@ -114,5 +114,16 @@
     </div>
   </div>
 </section>
+{% ifequal error "no"%}
+<script>
+    alert('Your project has been added');
+    window.location=('{% url "home" %}');
+</script>
+{% endifequal %}
 
+{% ifequal error "yes"%}
+<script>
+    alert('Something went wrong, try again!')
+</script>
+{% endifequal %}
 {% endblock %}
