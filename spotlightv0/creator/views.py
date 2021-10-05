@@ -79,8 +79,10 @@ def Add_Creator(request):
         except Exception as e:
             print(e)
             error = "yes"
+            messages.add_message(request,messages.SUCCESS, 'Added successfully')
+
     p = {'error': error}
-    messages.add_message(request,messages.SUCCESS, 'Added successfully')
+    #   messages.add_message(request,messages.SUCCESS, 'Added successfully')
 
     return render(request, 'create.html', p)
     #return redirect ('home')
