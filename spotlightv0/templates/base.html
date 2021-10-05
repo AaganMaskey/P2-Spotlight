@@ -75,7 +75,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {% if not user.is_authenticated %}
-                            Login
+                            Accounts
                             {% endif %}
                             {% if user.is_authenticated %}
                             {{user.username}}
@@ -84,9 +84,17 @@
                             {% csrf_token %}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if user.is_authenticated %}
                             <li><a class=" dropdown-item nav-link" href="/profile/{{user.username}}">
-                                    My Account
-                                </a></li>
+                                My Account
+                            </a></li>
+                            {% endif %}
+                            {% if not user.is_authenticated %}
+                            <li><a class=" dropdown-item nav-link" href="/register">
+                                Register
+                            </a></li>
+                            {% endif %}
+
                             {% comment %} <li><a class="dropdown-item" href="#">Another action</a></li> {% endcomment %}
                             <li>
                                 <hr class="dropdown-divider">

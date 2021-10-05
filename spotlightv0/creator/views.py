@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -79,7 +80,10 @@ def Add_Creator(request):
             print(e)
             error = "yes"
     p = {'error': error}
+    messages.add_message(request,messages.SUCCESS, 'Added successfully')
+
     return render(request, 'create.html', p)
+    #return redirect ('home')
 
 
 def View_Projects(request):
